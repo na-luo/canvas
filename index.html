@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <canvas id="canvas" width="100" height="100"></canvas>
+</body>
+    <script>
+        var canvas = document.getElementById("canvas");
+        canvas.width = document.documentElement.clientWidth;
+        canvas.height = document.documentElement.clientHeight;
+        //画线
+        var cxk = canvas.getContext("2d");
+
+        let painting = false;
+        cxk.fillStyle = "black";
+        cxk.fillRect(20,20,66,60);
+
+        canvas.onmousedown = ()=>{
+            painting = true;
+        }
+
+        canvas.onmousemove = (e)=>{
+            if (painting === true) {
+                // cxk.fillRect(e.clientX -10, e.clientY - 10, 10, 10);
+                cxk.beginPath();
+                cxk.arc(e.clientX -10,e.clientY - 10,10,0, 2*Math.PI);
+                cxk.stroke();
+                cxk.fill();
+            }else{
+                console.log("啥也不做");
+            }
+        }
+
+        canvas.onmouseup = ()=>{
+            painting = false;
+        }
+
+    </script>
+</html>
